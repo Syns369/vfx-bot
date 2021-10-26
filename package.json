@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "@giphy/js-fetch-api": "^4.1.2",
+    "discord.js": "^13.2.0",
+    "dotenv": "^10.0.0",
+    "isomorphic-fetch": "^3.0.0",
+    "node-fetch": "^3.0.0",
+    "puppeteer": "^10.4.0",
+    "wokcommands": "^1.5.3"
+  },
+  "name": "vfx-bot",
+  "description": "bot du discord vfx workshop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Syns369/vfx-bot.git"
+  },
+  "author": "Syns369",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Syns369/vfx-bot/issues"
+  },
+  "homepage": "https://github.com/Syns369/vfx-bot#readme"
+}
