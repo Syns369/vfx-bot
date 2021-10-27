@@ -6,15 +6,10 @@ const gf = new GiphyFetch('0UTRbFtkMxAplrohufYco5IY74U8hOes')
 // const fs = require('fs');
 // const path = require('path')
 
-const jc = [
-    'https://cdn.discordapp.com/attachments/778599476872871947/902593462250123334/received_651589489147628.jpeg',
-    'https://cdn.discordapp.com/attachments/778599476872871947/902593772397936640/received_2995090317478676.jpeg',
-    'https://cdn.discordapp.com/attachments/778599476872871947/902614734577225768/giphy.gif',
-    'https://cdn.discordapp.com/attachments/778599476872871947/902593891667157062/received_333821898276903.jpeg',
-    'https://cdn.discordapp.com/attachments/778599476872871947/902593942233698324/received_2614441095532104.jpeg',
-]
+const config = require('../config.json')
+const jc = config.jc
 
-const chance = 5
+const chance = 1
 
 module.exports = {
     
