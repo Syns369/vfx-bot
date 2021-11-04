@@ -9,7 +9,7 @@ const gf = new GiphyFetch('0UTRbFtkMxAplrohufYco5IY74U8hOes')
 const config = require('../config.json')
 const jc = config.jc
 
-const chance = 1
+const chance = 5
 
 module.exports = {
     
