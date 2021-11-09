@@ -38,25 +38,25 @@ module.exports = {
         const page = await browser.newPage(); //new page
         
         await page.goto("http://www.curvytron.com/#/"); //navigate to curvyton website
-        await new Promise(r => setTimeout(r, 100));
+        await new Promise(r => setTimeout(r, 500));
         
         await page.click("#submit"); //create room
-        await new Promise(r => setTimeout(r, 100));
+        await new Promise(r => setTimeout(r, 500));
         
         await page.type("#profile-name", "VFX-BOT"); //set profile name
-        await new Promise(r => setTimeout(r, 100));
+        await new Promise(r => setTimeout(r, 500));
         
         await page.click("#profile > div.profile-form.ng-scope > div > div > button"); //confirm profile
-        await new Promise(r => setTimeout(r, 100));
+        await new Promise(r => setTimeout(r, 500));
         
         await page.click(".icon-params"); //open settings
-        await new Promise(r => setTimeout(r, 100));
+        await new Promise(r => setTimeout(r, 500));
         
         await page.click("#open"); //set room as private
-        await new Promise(r => setTimeout(r, 100));
+        await new Promise(r => setTimeout(r, 500));
         
         await page.click(".icon-params"); //close settings
-        await new Promise(r => setTimeout(r, 100));
+        await new Promise(r => setTimeout(r, 500));
         
         const url = await page.url(); //get url
         console.log(url);

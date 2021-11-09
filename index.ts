@@ -9,6 +9,7 @@ const client = new DiscordJS.Client({
   intents: [
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES,
+    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
   ],
 })
 
@@ -19,6 +20,7 @@ client.on('ready', () => {
 
     // The name of the local folder for your command files
     commandsDir: path.join(__dirname, 'commands'),
+    featuresDir: path.join(__dirname, 'features'),
     // Allow importing of .ts files if you are using ts-node
     typeScript: true,
     // What guilds your slash commands will be created in
