@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/Syns369/vfx-bot/issues"
   },
-  "homepage": "https://github.com/Syns369/vfx-bot#readme"
+  "homepage": "https://github.com/Syns369/vfx-bot#readme",
+  "devDependencies": {
+    "ts-node": "^10.4.0"
+  }
 }
