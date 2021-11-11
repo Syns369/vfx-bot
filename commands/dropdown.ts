@@ -107,19 +107,19 @@ export default {
                     label: 'Sport',
                     description: 'Pour être notifié des événements sportifs',
                     value: '899413164209344513',
-                    emoji: '🎾', 
+                    emoji: '⚽', 
                 },
                 {
                     label: 'G@m3rZ',
                     description: 'Pour être notifié des soirées Game',
                     value: '899413326843482163',
-                    emoji: '🕹',
+                    emoji: '🎮',
                 },
                 {
                     label: 'Soirées',
                     description: 'Pour être notifié des soirées',
                     value: '899413367926693958',
-                    emoji: '🥳',
+                    emoji: '🍺',
                 },
                 {
                     label: 'Challenge',
