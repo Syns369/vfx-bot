@@ -16,7 +16,7 @@ const client = new DiscordJS.Client({
 client.on('ready', () => {
   new WOKCommands(client, {
 
-    botOwners: ['199877925405720577'],
+    botOwners: ['199877925405720577','241268193887387658'],
 
     // The name of the local folder for your command files
     commandsDir: path.join(__dirname, 'commands'),

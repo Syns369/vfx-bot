@@ -14,14 +14,14 @@ export default {
                 new MessageButton()
                     .setCustomId('ban_yes')
                     .setEmoji('❤')
-                    .setLabel('Confirm')
-                    .setStyle('SUCCESS')
+                    .setLabel('PROMO1')
+                    .setStyle('PRIMARY')
             )
             .addComponents(
                 new MessageButton()
                     .setCustomId('ban_no')
-                    .setLabel('Cancel')
-                    .setStyle('DANGER')
+                    .setLabel('PROMO2')
+                    .setStyle('SECONDARY')
             )
         
         const linkRow = new MessageActionRow()
