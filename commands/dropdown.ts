@@ -95,11 +95,11 @@ export default {
 			.addComponents(
 				new MessageSelectMenu()
 					.setCustomId('auto_roles')
-					.setPlaceholder('Choisis ta Promo')
+					.setPlaceholder('Selectionne ta Promo')
 					.addOptions(option)
 		    );
 
-        message.channel.send({content:'**Choisis ta Promo :**',components: [row]})
+        message.channel.send({content:'**SELECTIONNE TA PROMO :**',components: [row]})
 
         } else if (text === 'notifs') {
             const option = [
@@ -139,7 +139,7 @@ export default {
                         .setMaxValues(option.length)
 		        );
 
-            message.channel.send({content:'**Choisis tes notifs :**',components: [row]})
+            message.channel.send({content:'**CHOISIS TES NOTIFS :**',components: [row]})
         }   
     }
 } as ICommand
