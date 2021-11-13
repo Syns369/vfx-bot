@@ -42,60 +42,81 @@ export default {
 
 
   callback: async ({ interaction ,args, client }) => {
-    const type = args[0]
-    const lieu = args[1]
-    const date = args[2]
-    const heure = args[3]
 
     await interaction.deferReply(); //defer reply
 
+    const type = args[0]
+    let lieu = args[1]
+    const date = args[2]
+    const heure = args[3]
+
     let browser;
     
-        try {
-            browser = await puppeteer.launch({
-                headless: false,
-            }); //launch chrome
-        } catch (error) {
-            browser = await puppeteer.launch({
-                headless: true,
-                executablePath: '/bin/chromium-browser',
-                args: ['--no-sandbox', '--disable-setuid-sandbox']
-            }); //launch chrome
-        }
+    try {
+        browser = await puppeteer.launch({
+            headless: false,
+            userDataDir: './userData',
+        }); //launch chrome
+    } catch (error) {
+        browser = await puppeteer.launch({
+            headless: true,
+            executablePath: '/bin/chromium-browser',
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            userDataDir: './userData',
+        }); //launch chrome
+    }
 
     const page = await browser.newPage(); //new page
-        
-    await page.goto(lieu); //go to google maps
-    await new Promise(r => setTimeout(r, 1000));
 
-    // await page.click(".VfPpkd-vQzf8d");
-    // await page.click(".VfPpkd-LgbsSe");
-    await new Promise(r => setTimeout(r, 500));
+    if (lieu.split('/').shift() === 'https:') {
 
-    //click on span html text === "J'accepte"
-    
+      await page.goto(lieu); //go to google maps
 
-    
+    } else {
 
+      await page.goto('https://www.google.com/maps/search/' + lieu); //go to google maps
+
+      await page.waitForNavigation({
+        waitUntil: 'networkidle0',
+      });
+      
+      //click searchboxinput
+      await page.click('#searchboxinput');
+
+      //press enter
+      await page.keyboard.press('Enter');
+
+      lieu = await page.url();
+    }
     
-    
+    await new Promise(r => setTimeout(r, 1000 * 2)); //wait 2 seconds
+
     //take screenshot of google maps
     await page.screenshot({
         path: './commands/screenshot.png',
         fullPage: true
     });
-    await new Promise(r => setTimeout(r, 1000 * 60));
 
     await browser.close(); //close chrome
+
+    let pronom;
+    let title;
+
+    if (type.toLowerCase() === "soiree") {
+        pronom = 'chez'
+        title = 'Rdv Soirée 🥳'
+    } else if (type.toLocaleLowerCase() === "bar") {
+        pronom = 'avec'
+        title = 'Rdv Bar 🍻'
+    }
     
-    const description1 = `Rendez-vous chez @${interaction.user.username}`
-    const description2 = `Rendez-vous avec ${interaction.user.username}`
+    const description = `Rendez-vous ${pronom} @${interaction.user.username}`
     
     const screenshot = new MessageAttachment('./commands/screenshot.png')
 
     const exampleEmbed = new MessageEmbed()
-        .setTitle(`Rdv ${type} 🍺`)
-        .setDescription(`${description1}`)
+        .setTitle(String(title))
+        .setDescription(`${description}`)
         .setColor('#0099ff')
         .setURL(lieu)
         .setTimestamp()
@@ -103,41 +124,8 @@ export default {
         .addField('Date', date)
         .addField('Heure', heure)
         .setImage('attachment://screenshot.png')
+        .setThumbnail('attachment://screenshot.png')
 
-
-
-    // const embed = {
-    //     timestamp: new Date(),
-    //     title: `Rdv ${type} 🍺`,
-    //     description: description1,
-    //     color: 16065893,
-    //     url: lieu,
-    //     author: {
-    //         name: interaction.user.username,
-    //         icon_url: interaction.user.displayAvatarURL(),  
-    //     },
-    //     fields: [
-    //         {
-    //             name: 'Date',
-    //             value: date,
-    //             inline: true,
-    //         },
-    //         {
-    //             name: 'Heure',
-    //             value: heure,
-    //             inline: true,
-    //         },
-    //     ],
-    //     image: {
-    //         url: 'attachment:./screenshot.png',
-    //     },
-
-    //     // footer: {
-    //     //     text: 'Votez avec ✅ ou ⛔',
-    //     //     icon_url: interaction.user.displayAvatarURL(),
-    //     // },
-    
-    // }
 
     const message = await interaction.editReply({
         embeds: [exampleEmbed],

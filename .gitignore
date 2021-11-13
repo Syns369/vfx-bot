@@ -2,3 +2,5 @@
 /.env
 /config.json
 /commands/playerSolo.png
+/userData
+/commands/screenshot.png
