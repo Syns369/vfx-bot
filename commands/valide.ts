@@ -14,7 +14,7 @@ export default {
 
     options: [
         {
-            name: "messageId",
+            name: "messageid",
             description: "L'id de la propal à valider",
             required: true,
             type: "STRING"
