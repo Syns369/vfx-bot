@@ -55,7 +55,7 @@ export default {
             });
 
             if(args[1] === 'normale') {
-                const channel = client.channels.cache.get(`908500208034394173`) as TextChannel;
+                const channel = client.channels.cache.get(`908350096540844032`) as TextChannel;
                 channel.send({
                     embeds: [embedValide],
                 });
