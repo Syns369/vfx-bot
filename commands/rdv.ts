@@ -10,7 +10,7 @@ const puppeteer = require('puppeteer')
 
 export default {
   category: 'test', // Required for the slash commands
-  description: 'Adds two numbers', // Required for the slash commands
+  description: 'Propose un rdv sport, soirée ou bar', // Required for the slash commands
 
   slash: true, // If options are given then slash must be either true or 'both'
   testOnly: true, // Ensure you have test servers setup
@@ -126,6 +126,9 @@ export default {
       type: 'STRING', // This argument is a string
       choices: [
         {
+            name: "Ne sait pas", value: "Ne sait pas"
+        },
+        {
             name: "00h", value: "00h"
         },
         {
@@ -206,6 +209,9 @@ export default {
       type: 'STRING', // This argument is a string
       choices: [
         {
+            name: "Ne sait pas", value: "Ne sait pas"
+        },
+        {
             name: "00", value: "00"
         },
         {
@@ -258,7 +264,7 @@ export default {
     const jour = args[2];
     let jour_numero = args[3];
     const mois = args[4];
-    const heure = args[5];
+    let heure = args[5];
     const minute = args[6];
 
     let url;
@@ -350,7 +356,14 @@ export default {
     
     const screenshot = new MessageAttachment('./commands/screenshot.png')
 
-    const exampleEmbed = new MessageEmbed()
+    if (heure === 'Ne sait pas' || minute === 'Ne sait pas') {
+        heure = 'Ne sait pas'
+    } else {
+        heure = heure + minute;
+    }
+        
+
+    const embed = new MessageEmbed()
         .setTitle(String(title))
         .setDescription(`${description}`)
         .setColor('#0099ff')
@@ -358,17 +371,18 @@ export default {
         .setTimestamp()
         .setAuthor(interaction.user.username, String(interaction.user.avatarURL()))
         .addField('Jour', `${jour} ${jour_numero}/${mois}`, true)
-        .addField('Heure', `${heure+minute}`, true)
+        .addField('Heure', `${heure}`, true)
         .setThumbnail(gifUrl)
         .setImage('attachment://screenshot.png')
 
 
     const message = await interaction.editReply({
-        embeds: [exampleEmbed],
+        embeds: [embed],
         files: [screenshot],
     }) as Message
     
     message.react('✅')
+    message.react('❓')
     message.react('⛔')
   },
 } as ICommand

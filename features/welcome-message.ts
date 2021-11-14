@@ -21,7 +21,7 @@ export default (client: Client, instance: WOKCommands) => {
         `Ho non pas ${member} ... `,
         `Bienvenue ${member}, prend une chaise installe toi`,
         `${member} vient de vent dans le serv !`,
-        `Bienvenue àw ${member}, notre nouveau stagiaire`,
+        `Bienvenue à ${member}, notre nouveau stagiaire`,
         `A t'es là toi ?${member}`,
         `Cry in ${member}`,
         `Un ${member} sauvage apparaît !`,
