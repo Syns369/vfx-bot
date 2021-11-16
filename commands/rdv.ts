@@ -252,6 +252,12 @@ export default {
         },
     ],
     },
+    {
+        name: 'description',
+        description: 'Description du rdv',
+        required: false,
+        type: 'STRING',
+    }
   ],
 
 
@@ -266,6 +272,7 @@ export default {
     const mois = args[4];
     let heure = args[5];
     const minute = args[6];
+    let description = args[7];
 
     let url;
 
@@ -304,7 +311,12 @@ export default {
         gifUrl = 'https://media.giphy.com/media/1r8PZV2pFF4MUf6BcI/giphy.gif'
     }
 
-    const description = `Rendez-vous ${pronom} @${interaction.user.username}`
+    if(description) {
+        description = description;
+    } else {
+        description = `Rendez-vous ${pronom} @${interaction.user.username}`
+    }
+
 
     try {
         browser = await puppeteer.launch({
@@ -361,7 +373,6 @@ export default {
     } else {
         heure = heure + minute;
     }
-        
 
     const embed = new MessageEmbed()
         .setTitle(String(title))
